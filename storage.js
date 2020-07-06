@@ -1,37 +1,31 @@
 class Storage {
-  static addFilmToStorage(newFilm) {
+  constructor() {}
+
+  addFilmToStorage = (newFilm) => {
     let films = this.getFilmsFromStorage();
     films.push(newFilm);
-    /* 
-        [
-            {title:'asdjad', directory:'asdas', url:'2313213'}
-        ]
-        */
-
     localStorage.setItem("films", JSON.stringify(films));
-  }
+  };
 
-  static getFilmsFromStorage() {
+  getFilmsFromStorage = () => {
     let films;
-
     if (localStorage.getItem("films") === null) {
       films = [];
     } else {
       films = JSON.parse(localStorage.getItem("films"));
     }
     return films;
-  }
-  static deleteFilmFromStorage(filmTitle) {
+  };
+  deleteFilmFromStorage = (filmTitle) => {
     let films = this.getFilmsFromStorage();
-    // splice
-    films.forEach(function (film, index) {
+    films.forEach((film, index) => {
       if (film.title === filmTitle) {
         films.splice(index, 1);
       }
     });
     localStorage.setItem("films", JSON.stringify(films));
-  }
-  static clearAllFilmsFromStorage() {
+  };
+  clearAllFilmsFromStorage = () => {
     localStorage.removeItem("films");
-  }
+  };
 }
